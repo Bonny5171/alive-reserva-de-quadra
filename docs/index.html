@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Quadra - Clube Paineiras do Morumby</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon.ico">
+    
+    <!-- Google Fonts - Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 10px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .alt-title {
+            color: #333;
+            font-size: clamp(18px, 4vw, 24px);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .time-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .time-label {
+            color: #333;
+            font-weight: 600;
+            font-size: clamp(14px, 3vw, 16px);
+            margin-bottom: 5px;
+        }
+
+        .time-value {
+            color: #1976D2;
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 700;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .associados-section {
+            margin-top: 0;
+        }
+
+        .associados-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+
+        .associado-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            color: #333;
+            font-size: clamp(13px, 3vw, 15px);
+            border-left: 4px solid #e1058b;
+            font-weight: 400;
+        }
+
+        .associado-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .buttons-section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #fafafa;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .btn-cancel {
+            background: #021D49;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #01163a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(2, 29, 73, 0.3);
+        }
+
+        .btn-extend {
+            background: #e1058b;
+            color: white;
+        }
+
+        .btn-extend:hover {
+            background: #c7047a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
+        }
+
+        /* Layout alternativo */
+        .alternative-layout {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .alt-header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .members-list {
+            margin: 20px 0;
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            color: #333;
+            font-size: clamp(13px, 3vw, 15px);
+            font-weight: 400;
+        }
+
+        .member-item::before {
+            content: "•";
+            color: #e1058b;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .alt-buttons {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .btn-red {
+            background: #021D49;
+            color: white;
+        }
+
+        .btn-red:hover {
+            background: #01163a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(2, 29, 73, 0.3);
+        }
+
+        .btn-green {
+            background: #e1058b;
+            color: white;
+        }
+
+        .btn-green:hover {
+            background: #c7047a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
+        }
+
+        .control-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .toggle-btn, .theme-btn {
+            background: #e1058b;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(11px, 2.5vw, 12px);
+            font-weight: 600;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .toggle-btn:hover, .theme-btn:hover {
+            background: #c7047a;
+            transform: scale(1.05);
+        }
+
+        .theme-btn {
+            background: #021D49;
+        }
+
+        .theme-btn:hover {
+            background: #01163a;
+        }
+
+        .layout-2 {
+            display: none;
+        }
+
+        /* Media queries para diferentes tamanhos de tela */
+        @media (min-width: 480px) {
+            .buttons-section {
+                flex-direction: row;
+            }
+            
+            .btn {
+                flex: 1;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .container,
+            .alternative-layout {
+                max-width: 600px;
+            }
+            
+            .header,
+            .alt-header {
+                padding: 30px;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+            
+            .buttons-section,
+            .alt-buttons {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header,
+            .alt-header {
+                padding: 15px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .buttons-section,
+            .alt-buttons {
+                padding: 15px;
+            }
+            
+            .control-buttons {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .toggle-btn, .theme-btn {
+                padding: 8px 12px;
+                min-width: 100px;
+            }
+        }
+
+        /* Melhorias para acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Tema escuro - aplicado via classe */
+        body.dark-theme {
+            background-color: #1a1a1a;
+        }
+        
+        body.dark-theme .container,
+        body.dark-theme .alternative-layout {
+            background: #2d2d2d;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        body.dark-theme .header,
+        body.dark-theme .alt-header {
+            background: #2d2d2d;
+            border-bottom-color: #404040;
+        }
+        
+        body.dark-theme .alt-title,
+        body.dark-theme .time-label,
+        body.dark-theme .associados-title,
+        body.dark-theme .member-item {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .time-info,
+        body.dark-theme .associado-item {
+            background: #404040;
+            color: #e0e0e0;
+        }
+        
+        
+        body.dark-theme .buttons-section,
+        body.dark-theme .alt-buttons {
+            background: #353535;
+        }
+    </style>
+</head>
+<body>
+    <div class="control-buttons">
+        <button class="toggle-btn" onclick="toggleLayout()" aria-label="Alternar entre layouts">Alternar Layout</button>
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Alternar entre tema claro e escuro">Modo Escuro</button>
+    </div>
+
+    <!-- Layout 1 -->
+    <div class="container layout-1">
+        <div class="header">
+            <div class="logo">
+                <a href="https://clubepaineiras.showare.com.br" aria-label="Ir para página inicial do Clube Paineiras">
+                    <img class="logo js-logo" alt="Clube Paineiras do Morumby" src="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/logo-menu.png">
+                </a>
+            </div>
+            <h1 class="alt-title">Reserva da Quadra 03</h1>
+
+            <div class="time-info">
+                <div class="time-label">Horário:</div>
+                <div class="time-value">10:00 - 10:30</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="associados-section">
+                <h2 class="associados-title">Associados:</h2>
+                
+                <div class="associado-item">João Silva</div>
+                <div class="associado-item">Maria Oliveira</div>
+                <div class="associado-item">Carlos Souza</div>
+                <div class="associado-item">Ana Lima</div>
+            </div>
+        </div>
+
+        <div class="buttons-section">
+            <button class="btn btn-cancel" aria-label="Cancelar reserva da quadra">Cancelar Horário</button>
+            <button class="btn btn-extend" aria-label="Estender horário da reserva">Estender Horário</button>
+        </div>
+    </div>
+
+    <!-- Layout 2 -->
+    <div class="alternative-layout layout-2">
+        <div class="alt-header">
+            <div class="logo">
+                <a href="https://clubepaineiras.showare.com.br" aria-label="Ir para página inicial do Clube Paineiras">
+                    <img class="logo js-logo" alt="Clube Paineiras do Morumby" src="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/logo-menu.png">
+                </a>
+            </div>
+            
+            <h1 class="alt-title">Reserva da Quadra 03</h1>
+            
+            <div class="time-info">
+                <div class="time-label">Horário:</div>
+                <div class="time-value">10:00</div>
+            </div>
+
+            <div class="associados-section">
+                <h2 class="associados-title">Associados:</h2>
+                <div class="members-list">
+                    <div class="member-item">7000 - Associado da Silva 1</div>
+                    <div class="member-item">9000 - Associado dos Santos 2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alt-buttons">
+            <button class="btn-full btn-red" aria-label="Cancelar reserva da quadra">Cancelar Reserva</button>
+            <button class="btn-full btn-green" aria-label="Estender horário da reserva">Estender Horário</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar layouts
+        function toggleLayout() {
+            const layout1 = document.querySelector('.layout-1');
+            const layout2 = document.querySelector('.layout-2');
+            
+            if (layout1.style.display === 'none') {
+                layout1.style.display = 'block';
+                layout2.style.display = 'none';
+            } else {
+                layout1.style.display = 'none';
+                layout2.style.display = 'block';
+            }
+        }
+
+        // Função para alternar tema
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.querySelector('.theme-btn');
+            
+            body.classList.toggle('dark-theme');
+            
+            // Atualizar texto do botão
+            if (body.classList.contains('dark-theme')) {
+                themeBtn.innerHTML = '☀️ Modo Claro';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeBtn.innerHTML = '🌙 Modo Escuro';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Verificar tema salvo e aplicar na inicialização
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeBtn = document.querySelector('.theme-btn');
+            
+            // Se não há tema salvo, verificar preferência do sistema
+            if (!savedTheme) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    body.classList.add('dark-theme');
+                    themeBtn.innerHTML = '☀️ Modo Claro';
+                    localStorage.setItem('theme', 'dark');
+                }
+            } else if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeBtn.innerHTML = '☀️ Modo Claro';
+            }
+        }
+
+        // Funcionalidade dos botões
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tema
+            initializeTheme();
+            
+            const cancelButtons = document.querySelectorAll('.btn-cancel, .btn-red');
+            const extendButtons = document.querySelectorAll('.btn-extend, .btn-green');
+
+            cancelButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Tem certeza que deseja cancelar esta reserva?')) {
+                        alert('Reserva cancelada com sucesso!');
+                        // Aqui você pode adicionar a lógica para cancelar a reserva
+                    }
+                });
+            });
+
+            extendButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('Horário estendido com sucesso!');
+                    // Aqui você pode adicionar a lógica para estender o horário
+                });
+            });
+        });
+
+        // Suporte a teclado para os botões de controle
+        document.addEventListener('keydown', function(e) {
+            if (e.target.classList.contains('toggle-btn') || e.target.classList.contains('theme-btn')) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.target.click();
+                }
+            }
+        });
+
+        // Detectar mudanças na preferência de tema do sistema
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            // Só aplicar se não há preferência salva pelo usuário
+            if (!localStorage.getItem('theme')) {
+                const body = document.body;
+                const themeBtn = document.querySelector('.theme-btn');
+                
+                if (e.matches) {
+                    body.classList.add('dark-theme');
+                    themeBtn.innerHTML = 'Modo Claro';
+                } else {
+                    body.classList.remove('dark-theme');
+                    themeBtn.innerHTML = 'Modo Escuro';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
