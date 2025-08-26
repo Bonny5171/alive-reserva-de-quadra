@@ -123,6 +123,12 @@
             font-size: 12px;
         }
 
+        .icon svg {
+            width: 80%;
+            height: 80%;
+            fill: white; /* ou currentColor para herdar a cor */
+        }
+
         .info-value {
             font-size: 1.3rem;
             font-weight: 600;
@@ -375,7 +381,8 @@
 
             .vs-indicator {
                 position: static;
-                margin: 15px auto;
+                /* margin: 15px auto; */
+                margin: 15px auto 0px 165px;
                 background: linear-gradient(135deg, #021D49, #e1058b);
                 color: white;
                 padding: 8px 16px;
@@ -420,7 +427,11 @@
             <div class="info-grid">
                 <div class="info-card">
                     <h3>
-                        <span class="icon"><i class="fas fa-volleyball-ball"></i></span>
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                <path d="m312,527.8c0,-55.2 21.1,-110.4 63.3,-152.6c42.2,-42.2 97.3,-63.2 152.5,-63.2c-4.1,-108.5 -91.3,-195.7 -199.8,-199.8c0,55.2 -21.1,110.4 -63.3,152.6c-42.2,42.2 -97.3,63.2 -152.5,63.2c4.1,108.5 91.3,195.7 199.8,199.8zm48,-3.7c82.8,-16.1 148,-81.4 164.1,-164.1c-41.7,1 -83.1,17.3 -114.9,49.2c-31.8,31.9 -48.2,73.2 -49.2,115l0,-0.1zm-244.1,-244.1c41.7,-1 83.1,-17.3 114.9,-49.2c31.8,-31.9 48.2,-73.2 49.2,-114.9c-82.8,16.1 -148,81.3 -164.1,164.1zm-51.9,40c0,-141.4 114.6,-256 256,-256c141.4,0 256,114.6 256,256c0,141.4 -114.6,256 -256,256c-141.4,0 -256,-114.6 -256,-256z" fill="white"/>
+                            </svg>
+                        </span>
                         Quadra
                     </h3>
                     <div class="info-value">Quadra Central 1</div>
