@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Quadra - Clube Paineiras do Morumby</title>
-    
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon-16x16.png">
-    <link rel="shortcut icon" href="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/favicon/favicon.ico">
-    
-    <!-- Google Fonts - Open Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <title>Detalhes da Reserva - Tennis Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -24,553 +13,721 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e1058b 0%, #021D49 100%);
             min-height: 100vh;
+            padding: 20px;
+            color: #333;
         }
 
         .container {
-            max-width: 500px;
-            width: 100%;
+            max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            position: relative;
         }
 
         .header {
-            background: white;
-            padding: 20px;
+            background: linear-gradient(135deg, #021D49 0%, #0a2a5e 100%);
+            color: white;
+            padding: 32px;
             text-align: center;
-            border-bottom: 1px solid #eee;
+            position: relative;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="1" fill="white" opacity="0.15"/><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.1"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.12"/></svg>');
         }
 
-        .logo img {
-            max-width: 200px;
-            height: auto;
-        }
-
-        .alt-title {
-            color: #333;
-            font-size: clamp(18px, 4vw, 24px);
+        .header h1 {
+            font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
 
-        .time-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .time-label {
-            color: #333;
-            font-weight: 600;
-            font-size: clamp(14px, 3vw, 16px);
-            margin-bottom: 5px;
-        }
-
-        .time-value {
-            color: #1976D2;
-            font-size: clamp(16px, 4vw, 20px);
-            font-weight: 700;
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .content {
-            padding: 20px;
+            padding: 40px;
         }
 
-        .associados-section {
-            margin-top: 0;
-        }
-
-        .associados-title {
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e1058b, #c4047a);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-            font-size: clamp(14px, 3vw, 16px);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
         }
 
-        .associado-item {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            color: #333;
-            font-size: clamp(13px, 3vw, 15px);
-            border-left: 4px solid #e1058b;
-            font-weight: 400;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
-        .associado-item:last-child {
-            margin-bottom: 0;
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .buttons-section {
-            padding: 20px;
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card h3 {
+            color: #021D49;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: #fafafa;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: clamp(14px, 3vw, 16px);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
+        .icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #e1058b, #021D49);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .btn-cancel {
-            background: #021D49;
             color: white;
+            font-weight: bold;
+            font-size: 12px;
         }
 
-        .btn-cancel:hover {
-            background: #01163a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(2, 29, 73, 0.3);
+        .info-value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .info-detail {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .participants {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .participants-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .participants h3 {
+            color: #021D49;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .format-toggle {
+            background: linear-gradient(135deg, #e1058b, #c4047a);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .format-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
+        }
+
+        /* Layout para Singles (1x1) */
+        .singles-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            min-height: 120px;
+        }
+
+        .court-divider {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 80px;
+            background: linear-gradient(135deg, #021D49, #e1058b);
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        .court-side {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Layout para Duplas (2x2) */
+        .doubles-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .team-label {
+            font-weight: 700;
+            color: #021D49;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .player {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .player:hover {
+            transform: scale(1.02);
+            border-color: #e1058b;
+        }
+
+        .player-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e1058b, #021D49);
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .player-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .player-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .vs-indicator {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #021D49, #e1058b);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .participants-container {
+            position: relative;
+        }
+
+        .actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 160px;
+            justify-content: center;
         }
 
         .btn-extend {
-            background: #e1058b;
+            background: linear-gradient(135deg, #e1058b, #c4047a);
             color: white;
+            box-shadow: 0 6px 20px rgba(225, 5, 139, 0.3);
         }
 
         .btn-extend:hover {
-            background: #c7047a;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
+            box-shadow: 0 8px 25px rgba(225, 5, 139, 0.4);
         }
 
-        /* Layout alternativo */
-        .alternative-layout {
-            max-width: 500px;
-            width: 100%;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .alt-header {
-            background: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .members-list {
-            margin: 20px 0;
-        }
-
-        .member-item {
-            display: flex;
-            align-items: center;
-            padding: 8px 0;
-            color: #333;
-            font-size: clamp(13px, 3vw, 15px);
-            font-weight: 400;
-        }
-
-        .member-item::before {
-            content: "•";
-            color: #e1058b;
-            font-weight: bold;
-            margin-right: 12px;
-            font-size: 16px;
-        }
-
-        .alt-buttons {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn-full {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: clamp(14px, 3vw, 16px);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .btn-red {
-            background: #021D49;
+        .btn-cancel {
+            background: linear-gradient(135deg, #021D49, #0a2a5e);
             color: white;
+            box-shadow: 0 6px 20px rgba(2, 29, 73, 0.3);
         }
 
-        .btn-red:hover {
-            background: #01163a;
+        .btn-cancel:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(2, 29, 73, 0.3);
+            box-shadow: 0 8px 25px rgba(2, 29, 73, 0.4);
         }
 
-        .btn-green {
-            background: #e1058b;
-            color: white;
+        .btn i {
+            font-size: 1.1rem;
         }
 
-        .btn-green:hover {
-            background: #c7047a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(225, 5, 139, 0.3);
-        }
-
-        .control-buttons {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 1000;
-        }
-
-        .toggle-btn, .theme-btn {
-            background: #e1058b;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: clamp(11px, 2.5vw, 12px);
-            font-weight: 600;
-            font-family: 'Open Sans', sans-serif;
-            transition: all 0.3s ease;
-            min-width: 120px;
-            text-align: center;
-        }
-
-        .toggle-btn:hover, .theme-btn:hover {
-            background: #c7047a;
-            transform: scale(1.05);
-        }
-
-        .theme-btn {
-            background: #021D49;
-        }
-
-        .theme-btn:hover {
-            background: #01163a;
-        }
-
-        .layout-2 {
-            display: none;
-        }
-
-        /* Media queries para diferentes tamanhos de tela */
-        @media (min-width: 480px) {
-            .buttons-section {
-                flex-direction: row;
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 16px;
             }
-            
+
+            .header {
+                padding: 24px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 24px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .singles-layout,
+            .doubles-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                position: relative;
+            }
+
+            .doubles-layout {
+                padding: 0;
+            }
+
+            .court-divider {
+                display: none;
+            }
+
+            .vs-indicator {
+                position: static;
+                margin: 15px auto;
+                background: linear-gradient(135deg, #021D49, #e1058b);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 50px;
+                font-weight: bold;
+                font-size: 1rem;
+                z-index: 2;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                width: fit-content;
+                text-align: center;
+                display: block;
+            }
+
+            .team {
+                position: relative;
+                z-index: 1;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
             .btn {
-                flex: 1;
+                width: 100%;
             }
-        }
 
-        @media (min-width: 768px) {
-            body {
-                padding: 20px;
+            .participants-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
             }
-            
-            .container,
-            .alternative-layout {
-                max-width: 600px;
-            }
-            
-            .header,
-            .alt-header {
-                padding: 30px;
-            }
-            
-            .content {
-                padding: 30px;
-            }
-            
-            .buttons-section,
-            .alt-buttons {
-                padding: 30px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            body {
-                padding: 5px;
-            }
-            
-            .header,
-            .alt-header {
-                padding: 15px;
-            }
-            
-            .content {
-                padding: 15px;
-            }
-            
-            .buttons-section,
-            .alt-buttons {
-                padding: 15px;
-            }
-            
-            .control-buttons {
-                top: 10px;
-                right: 10px;
-            }
-            
-            .toggle-btn, .theme-btn {
-                padding: 8px 12px;
-                min-width: 100px;
-            }
-        }
-
-        /* Melhorias para acessibilidade */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Tema escuro - aplicado via classe */
-        body.dark-theme {
-            background-color: #1a1a1a;
-        }
-        
-        body.dark-theme .container,
-        body.dark-theme .alternative-layout {
-            background: #2d2d2d;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        }
-        
-        body.dark-theme .header,
-        body.dark-theme .alt-header {
-            background: #2d2d2d;
-            border-bottom-color: #404040;
-        }
-        
-        body.dark-theme .alt-title,
-        body.dark-theme .time-label,
-        body.dark-theme .associados-title,
-        body.dark-theme .member-item {
-            color: #e0e0e0;
-        }
-        
-        body.dark-theme .time-info,
-        body.dark-theme .associado-item {
-            background: #404040;
-            color: #e0e0e0;
-        }
-        
-        
-        body.dark-theme .buttons-section,
-        body.dark-theme .alt-buttons {
-            background: #353535;
         }
     </style>
 </head>
 <body>
-    <div class="control-buttons">
-        <button class="toggle-btn" onclick="toggleLayout()" aria-label="Alternar entre layouts">Alternar Layout</button>
-        <button class="theme-btn" onclick="toggleTheme()" aria-label="Alternar entre tema claro e escuro">Modo Escuro</button>
-    </div>
-
-    <!-- Layout 1 -->
-    <div class="container layout-1">
+    <div class="container">
         <div class="header">
-            <div class="logo">
-                <a href="https://clubepaineiras.showare.com.br" aria-label="Ir para página inicial do Clube Paineiras">
-                    <img class="logo js-logo" alt="Clube Paineiras do Morumby" src="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/logo-menu.png">
-                </a>
-            </div>
-            <h1 class="alt-title">Reserva da Quadra 03</h1>
-
-            <div class="time-info">
-                <div class="time-label">Horário:</div>
-                <div class="time-value">10:00 - 10:30</div>
-            </div>
+            <h1><i class="fas fa-table-tennis"></i> Reserva Confirmada</h1>
         </div>
 
         <div class="content">
-            <div class="associados-section">
-                <h2 class="associados-title">Associados:</h2>
-                
-                <div class="associado-item">João Silva</div>
-                <div class="associado-item">Maria Oliveira</div>
-                <div class="associado-item">Carlos Souza</div>
-                <div class="associado-item">Ana Lima</div>
-            </div>
-        </div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>
+                        <span class="icon"><i class="fas fa-volleyball-ball"></i></span>
+                        Quadra
+                    </h3>
+                    <div class="info-value">Quadra Central 1</div>
+                    <div class="info-detail">Saibro profissional • Cobertura</div>
+                </div>
 
-        <div class="buttons-section">
-            <button class="btn btn-cancel" aria-label="Cancelar reserva da quadra">Cancelar Horário</button>
-            <button class="btn btn-extend" aria-label="Estender horário da reserva">Estender Horário</button>
-        </div>
-    </div>
+                <div class="info-card">
+                    <h3>
+                        <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                        Data
+                    </h3>
+                    <div class="info-value">Hoje, 07 Ago</div>
+                    <div class="info-detail">Quinta-feira</div>
+                </div>
 
-    <!-- Layout 2 -->
-    <div class="alternative-layout layout-2">
-        <div class="alt-header">
-            <div class="logo">
-                <a href="https://clubepaineiras.showare.com.br" aria-label="Ir para página inicial do Clube Paineiras">
-                    <img class="logo js-logo" alt="Clube Paineiras do Morumby" src="https://showare-cdn.s3.amazonaws.com/paineiras/images/site/logo-menu.png">
-                </a>
-            </div>
-            
-            <h1 class="alt-title">Reserva da Quadra 03</h1>
-            
-            <div class="time-info">
-                <div class="time-label">Horário:</div>
-                <div class="time-value">10:00</div>
-            </div>
+                <div class="info-card">
+                    <h3>
+                        <span class="icon"><i class="fas fa-clock"></i></span>
+                        Horário
+                    </h3>
+                    <div class="info-value">14:00 - 16:00</div>
+                    <div class="info-detail">2 horas reservadas</div>
+                </div>
 
-            <div class="associados-section">
-                <h2 class="associados-title">Associados:</h2>
-                <div class="members-list">
-                    <div class="member-item">7000 - Associado da Silva 1</div>
-                    <div class="member-item">9000 - Associado dos Santos 2</div>
+                <div class="info-card">
+                    <h3>
+                        <span class="icon"><i class="fas fa-bullseye"></i></span>
+                        Modalidade
+                    </h3>
+                    <div class="info-value" id="modalidade-text">Duplas</div>
+                    <div class="info-detail" id="modalidade-detail">4 jogadores</div>
                 </div>
             </div>
-        </div>
 
-        <div class="alt-buttons">
-            <button class="btn-full btn-red" aria-label="Cancelar reserva da quadra">Cancelar Reserva</button>
-            <button class="btn-full btn-green" aria-label="Estender horário da reserva">Estender Horário</button>
+            <div class="participants">
+                <div class="participants-header">
+                    <h3>
+                        <span class="icon"><i class="fas fa-users"></i></span>
+                        Participantes
+                    </h3>
+                </div>
+                
+                <div class="participants-container">
+                    <!-- Layout Duplas (2x2) - padrão -->
+                    <div id="doubles-container" class="doubles-layout">
+                        <div class="team">
+                            <div class="player">
+                                <div class="player-avatar">MA</div>
+                                <div class="player-name">Maria Silva</div>
+                                <div class="player-role">Titular</div>
+                            </div>
+                            <div class="player">
+                                <div class="player-avatar">JO</div>
+                                <div class="player-name">João Santos</div>
+                                <div class="player-role">Titular</div>
+                            </div>
+                        </div>
+                        
+                        <div class="vs-indicator">VS</div>
+                        
+                        <div class="team">
+                            <div class="player">
+                                <div class="player-avatar">AN</div>
+                                <div class="player-name">Ana Costa</div>
+                                <div class="player-role">Titular</div>
+                            </div>
+                            <div class="player">
+                                <div class="player-avatar">PE</div>
+                                <div class="player-name">Pedro Lima</div>
+                                <div class="player-role">Titular</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layout Singles (1x1) -->
+                    <div id="singles-container" class="singles-layout" style="display: none;">
+                        <div class="court-side">
+                            <div class="player">
+                                <div class="player-avatar">MA</div>
+                                <div class="player-name">Maria Silva</div>
+                                <div class="player-role">Jogadora 1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="vs-indicator">VS</div>
+                        
+                        <div class="court-side">
+                            <div class="player">
+                                <div class="player-avatar">JO</div>
+                                <div class="player-name">João Santos</div>
+                                <div class="player-role">Jogador 2</div>
+                            </div>
+                        </div>
+                        
+                        <div class="court-divider"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-extend" onclick="extendReservation()">
+                    <i class="fas fa-clock"></i>
+                    Estender Horário
+                </button>
+                <button class="btn btn-cancel" onclick="cancelReservation()">
+                    <i class="fas fa-times"></i>
+                    Cancelar Reserva
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Função para alternar layouts
-        function toggleLayout() {
-            const layout1 = document.querySelector('.layout-1');
-            const layout2 = document.querySelector('.layout-2');
-            
-            if (layout1.style.display === 'none') {
-                layout1.style.display = 'block';
-                layout2.style.display = 'none';
+        let isDoublesFormat = true;
+
+        // Função para extrair parâmetros da URL
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                quadra: params.get('quadra') || 'Quadra Central 1',
+                tipo_quadra: params.get('tipo_quadra') || 'Saibro profissional • Cobertura',
+                data: params.get('data') || 'Hoje, 07 Ago',
+                dia_semana: params.get('dia_semana') || 'Quinta-feira',
+                horario: params.get('horario') || '14:00 - 16:00',
+                duracao: params.get('duracao') || '2 horas reservadas',
+                modalidade: params.get('modalidade') || 'Duplas',
+                jogador1_nome: params.get('jogador1_nome') || 'Maria Silva',
+                jogador1_iniciais: params.get('jogador1_iniciais') || 'MA',
+                jogador2_nome: params.get('jogador2_nome') || 'João Santos',
+                jogador2_iniciais: params.get('jogador2_iniciais') || 'JO',
+                jogador3_nome: params.get('jogador3_nome') || 'Ana Costa',
+                jogador3_iniciais: params.get('jogador3_iniciais') || 'AN',
+                jogador4_nome: params.get('jogador4_nome') || 'Pedro Lima',
+                jogador4_iniciais: params.get('jogador4_iniciais') || 'PE'
+            };
+        }
+
+        // Função para atualizar os dados na página
+        function updatePageData() {
+            const params = getUrlParams();
+
+            // Atualizar informações da quadra
+            document.querySelector('.info-card:nth-child(1) .info-value').textContent = params.quadra;
+            document.querySelector('.info-card:nth-child(1) .info-detail').textContent = params.tipo_quadra;
+
+            // Atualizar data
+            document.querySelector('.info-card:nth-child(2) .info-value').textContent = params.data;
+            document.querySelector('.info-card:nth-child(2) .info-detail').textContent = params.dia_semana;
+
+            // Atualizar horário
+            document.querySelector('.info-card:nth-child(3) .info-value').textContent = params.horario;
+            document.querySelector('.info-card:nth-child(3) .info-detail').textContent = params.duracao;
+
+            // Atualizar modalidade
+            document.getElementById('modalidade-text').textContent = params.modalidade;
+            if (params.modalidade.toLowerCase() === 'singles') {
+                document.getElementById('modalidade-detail').textContent = '2 jogadores';
+                isDoublesFormat = false;
+                toggleToSingles();
             } else {
-                layout1.style.display = 'none';
-                layout2.style.display = 'block';
+                document.getElementById('modalidade-detail').textContent = '4 jogadores';
+                isDoublesFormat = true;
+                toggleToDoubles();
             }
-        }
 
-        // Função para alternar tema
-        function toggleTheme() {
-            const body = document.body;
-            const themeBtn = document.querySelector('.theme-btn');
-            
-            body.classList.toggle('dark-theme');
-            
-            // Atualizar texto do botão
-            if (body.classList.contains('dark-theme')) {
-                themeBtn.innerHTML = '☀️ Modo Claro';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeBtn.innerHTML = '🌙 Modo Escuro';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Verificar tema salvo e aplicar na inicialização
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const body = document.body;
-            const themeBtn = document.querySelector('.theme-btn');
-            
-            // Se não há tema salvo, verificar preferência do sistema
-            if (!savedTheme) {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (prefersDark) {
-                    body.classList.add('dark-theme');
-                    themeBtn.innerHTML = '☀️ Modo Claro';
-                    localStorage.setItem('theme', 'dark');
-                }
-            } else if (savedTheme === 'dark') {
-                body.classList.add('dark-theme');
-                themeBtn.innerHTML = '☀️ Modo Claro';
-            }
-        }
-
-        // Funcionalidade dos botões
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar tema
-            initializeTheme();
-            
-            const cancelButtons = document.querySelectorAll('.btn-cancel, .btn-red');
-            const extendButtons = document.querySelectorAll('.btn-extend, .btn-green');
-
-            cancelButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    if (confirm('Tem certeza que deseja cancelar esta reserva?')) {
-                        alert('Reserva cancelada com sucesso!');
-                        // Aqui você pode adicionar a lógica para cancelar a reserva
-                    }
-                });
-            });
-
-            extendButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    alert('Horário estendido com sucesso!');
-                    // Aqui você pode adicionar a lógica para estender o horário
-                });
-            });
-        });
-
-        // Suporte a teclado para os botões de controle
-        document.addEventListener('keydown', function(e) {
-            if (e.target.classList.contains('toggle-btn') || e.target.classList.contains('theme-btn')) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    e.target.click();
-                }
-            }
-        });
-
-        // Detectar mudanças na preferência de tema do sistema
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-            // Só aplicar se não há preferência salva pelo usuário
-            if (!localStorage.getItem('theme')) {
-                const body = document.body;
-                const themeBtn = document.querySelector('.theme-btn');
+            // Atualizar jogadores no layout de duplas
+            const doublesPlayers = document.querySelectorAll('#doubles-container .player');
+            if (doublesPlayers.length >= 4) {
+                // Time A - Jogador 1
+                doublesPlayers[0].querySelector('.player-avatar').textContent = params.jogador1_iniciais;
+                doublesPlayers[0].querySelector('.player-name').textContent = params.jogador1_nome;
                 
-                if (e.matches) {
-                    body.classList.add('dark-theme');
-                    themeBtn.innerHTML = 'Modo Claro';
-                } else {
-                    body.classList.remove('dark-theme');
-                    themeBtn.innerHTML = 'Modo Escuro';
+                // Time A - Jogador 2
+                doublesPlayers[1].querySelector('.player-avatar').textContent = params.jogador2_iniciais;
+                doublesPlayers[1].querySelector('.player-name').textContent = params.jogador2_nome;
+                
+                // Time B - Jogador 3
+                doublesPlayers[2].querySelector('.player-avatar').textContent = params.jogador3_iniciais;
+                doublesPlayers[2].querySelector('.player-name').textContent = params.jogador3_nome;
+                
+                // Time B - Jogador 4
+                doublesPlayers[3].querySelector('.player-avatar').textContent = params.jogador4_iniciais;
+                doublesPlayers[3].querySelector('.player-name').textContent = params.jogador4_nome;
+            }
+
+            // Atualizar jogadores no layout de singles
+            const singlesPlayers = document.querySelectorAll('#singles-container .player');
+            if (singlesPlayers.length >= 2) {
+                // Jogador 1
+                singlesPlayers[0].querySelector('.player-avatar').textContent = params.jogador1_iniciais;
+                singlesPlayers[0].querySelector('.player-name').textContent = params.jogador1_nome;
+                
+                // Jogador 2
+                singlesPlayers[1].querySelector('.player-avatar').textContent = params.jogador2_iniciais;
+                singlesPlayers[1].querySelector('.player-name').textContent = params.jogador2_nome;
+            }
+        }
+
+        function toggleToSingles() {
+            document.getElementById('doubles-container').style.display = 'none';
+            document.getElementById('singles-container').style.display = 'grid';
+            document.getElementById('toggle-text').textContent = 'Mudar para Duplas';
+        }
+
+        function toggleToDoubles() {
+            document.getElementById('doubles-container').style.display = 'grid';
+            document.getElementById('singles-container').style.display = 'none';
+            document.getElementById('toggle-text').textContent = 'Mudar para Singles';
+        }
+
+        function toggleFormat() {
+            const doublesContainer = document.getElementById('doubles-container');
+            const singlesContainer = document.getElementById('singles-container');
+            const toggleText = document.getElementById('toggle-text');
+            const modalidadeText = document.getElementById('modalidade-text');
+            const modalidadeDetail = document.getElementById('modalidade-detail');
+
+            if (isDoublesFormat) {
+                // Mudar para Singles
+                doublesContainer.style.display = 'none';
+                singlesContainer.style.display = 'grid';
+                toggleText.textContent = 'Mudar para Duplas';
+                modalidadeText.textContent = 'Singles';
+                modalidadeDetail.textContent = '2 jogadores';
+                isDoublesFormat = false;
+            } else {
+                // Mudar para Duplas
+                doublesContainer.style.display = 'grid';
+                singlesContainer.style.display = 'none';
+                toggleText.textContent = 'Mudar para Singles';
+                modalidadeText.textContent = 'Duplas';
+                modalidadeDetail.textContent = '4 jogadores';
+                isDoublesFormat = true;
+            }
+
+            // Animação suave na troca
+            const participantsContainer = document.querySelector('.participants-container');
+            participantsContainer.style.opacity = '0.7';
+            setTimeout(() => {
+                participantsContainer.style.opacity = '1';
+            }, 300);
+        }
+
+        function extendReservation() {
+            if (confirm('Deseja estender o horário da reserva? \n\nHorários disponíveis:\n• 16:00 - 17:00 (+1h)\n• 16:00 - 18:00 (+2h)')) {
+                // Simulação de extensão
+                const timeCard = document.querySelector('.info-card:nth-child(3) .info-value');
+                timeCard.textContent = '14:00 - 17:00';
+                
+                const detailCard = document.querySelector('.info-card:nth-child(3) .info-detail');
+                detailCard.textContent = '3 horas reservadas';
+                
+                // Mostrar confirmação
+                const badge = document.querySelector('.status-badge');
+                if (badge) {
+                    badge.innerHTML = '<i class="fas fa-check-circle"></i> Reserva Estendida';
+                    badge.style.background = 'linear-gradient(135deg, #FF9800, #F57C00)';
+                    
+                    setTimeout(() => {
+                        badge.innerHTML = '<i class="fas fa-check-circle"></i> Reserva Ativa';
+                        badge.style.background = 'linear-gradient(135deg, #e1058b, #c4047a)';
+                    }, 3000);
                 }
             }
+        }
+
+        function cancelReservation() {
+            if (confirm('Tem certeza que deseja cancelar esta reserva?\n\nEsta ação não pode ser desfeita.')) {
+                // Simulação de cancelamento
+                const badge = document.querySelector('.status-badge');
+                if (badge) {
+                    badge.innerHTML = '<i class="fas fa-times-circle"></i> Reserva Cancelada';
+                    badge.style.background = 'linear-gradient(135deg, #021D49, #0a2a5e)';
+                    badge.style.boxShadow = '0 4px 12px rgba(2, 29, 73, 0.3)';
+                }
+                
+                // Desabilitar botões
+                const buttons = document.querySelectorAll('.btn, .format-toggle');
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                    btn.style.cursor = 'not-allowed';
+                });
+                
+                // Adicionar overlay de cancelamento
+                const content = document.querySelector('.content');
+                content.style.opacity = '0.7';
+            }
+        }
+
+        // Animação de entrada
+        window.addEventListener('load', () => {
+            // Primeiro, atualizar os dados da página com os parâmetros da URL
+            updatePageData();
+            
+            // Depois, executar as animações
+            const cards = document.querySelectorAll('.info-card, .participants');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
         });
     </script>
 </body>
