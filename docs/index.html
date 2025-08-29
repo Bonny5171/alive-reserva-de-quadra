@@ -94,7 +94,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 150px;
+            width: 166px;
+            margin: 5px;
         }
 
         .info-card:hover {
@@ -144,9 +145,9 @@
         }
 
         .participants {
-            background: white;
+            background: pink;
             border-radius: 16px;
-            padding: 14px;
+            padding: 5px;
             margin-bottom: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -164,7 +165,7 @@
 
         .participants h3 {
             color: #55565A;
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -226,7 +227,7 @@
         .team {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 10px;
             align-items: center;
         }
 
@@ -240,7 +241,7 @@
         .player {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             border-radius: 12px;
-            padding: 10px;
+            padding: 5px;
             text-align: center;
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -268,7 +269,7 @@
         }
 
         .player-name {
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #333;
             margin-bottom: 4px;
@@ -290,7 +291,7 @@
 
         .actions {
             display: flex;
-            gap: 16px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -400,11 +401,11 @@
             }
 
             .header h1 {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             .content {
-                padding: 10px 20px;
+                padding: 10px 10px;
             }
 
             .info-grid {
@@ -413,17 +414,18 @@
             }
 
             .info-card {
-                padding: 8px;
+                padding: 5px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                /* margin: 10px; */
-                width: 120px;
+                margin: 5px;
+                width: 140px;
+                background-color: red;
             }
 
             .info-card h3 {
-                font-size: 0.95rem;
-                margin-bottom: 8px;
+                font-size: 0.75rem;
+                margin-bottom: 5px;
                 color: #55565A;
             }
 
@@ -434,7 +436,7 @@
             }
 
             .info-value {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 margin-bottom: 2px;
                 color: #090909;
             }
@@ -451,7 +453,7 @@
             .singles-layout,
             .doubles-layout {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 15px;
                 position: relative;
             }
 
@@ -555,23 +557,23 @@
                     <div id="doubles-container" class="doubles-layout">
                         <div class="team">
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-1"></div>
+                                <div class="player-role" id="player-role-1"></div>
                             </div>
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-2"></div>
+                                <div class="player-role" id="player-role-2"></div>
                             </div>
                         </div>
 
                         <div class="team">
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-3"></div>
+                                <div class="player-role" id="player-role-3"></div>
                             </div>
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-4"></div>
+                                <div class="player-role" id="player-role-4"></div>
                             </div>
                         </div>
                     </div>
@@ -580,15 +582,15 @@
                     <div id="singles-container" class="singles-layout" style="display: none;">
                         <div class="court-side">
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-1"></div>
+                                <div class="player-role" id="player-role-1"></div>
                             </div>
                         </div>
                         
                         <div class="court-side">
                             <div class="player">
-                                <div class="player-name"></div>
-                                <div class="player-role"></div>
+                                <div class="player-name" id="player-name-2"></div>
+                                <div class="player-role" id="player-role-2"></div>
                             </div>
                         </div>
                         
@@ -779,39 +781,33 @@
                             document.getElementById('doubles-container').style.display = 'none';
                             document.getElementById('singles-container').style.display = 'grid';
 
-                            // Atualizar jogadores no layout de singles
-                            const singlesPlayers = document.querySelectorAll('#singles-container .player');
-
                             // Jogador 1
-                            singlesPlayers[0].querySelector('.player-name').textContent = data.PARTICIPANTES[0].ASSOCIADO;
-                            singlesPlayers[0].querySelector('.player-role').textContent = data.PARTICIPANTES[0].TITULO;
+                            document.getElementById('player-name-1').textContent = data.PARTICIPANTES[0].ASSOCIADO;
+                            document.getElementById('player-role-1').textContent = data.PARTICIPANTES[0].TITULO;
                             
                             // Jogador 2
-                            singlesPlayers[1].querySelector('.player-name').textContent = data.PARTICIPANTES[1].ASSOCIADO;
-                            singlesPlayers[1].querySelector('.player-role').textContent = data.PARTICIPANTES[1].TITULO;
+                            document.getElementById('player-name-2').textContent = data.PARTICIPANTES[1].ASSOCIADO;
+                            document.getElementById('player-role-2').textContent = data.PARTICIPANTES[1].TITULO;
 
                         } else {
                             document.getElementById('doubles-container').style.display = 'grid';
                             document.getElementById('singles-container').style.display = 'none';
 
-                            // Atualizar jogadores no layout de duplas
-                            const doublesPlayers = document.querySelectorAll('#doubles-container .player');
-
                             // Time A - Jogador 1
-                            doublesPlayers[0].querySelector('.player-name').textContent = data.PARTICIPANTES[0].ASSOCIADO;
-                            doublesPlayers[0].querySelector('.player-role').textContent = data.PARTICIPANTES[0].TITULO;
+                            document.getElementById('player-name-1').textContent = data.PARTICIPANTES[0].ASSOCIADO;
+                            document.getElementById('player-role-1').textContent = data.PARTICIPANTES[0].TITULO;
                             
                             // Time A - Jogador 2
-                            doublesPlayers[1].querySelector('.player-name').textContent = data.PARTICIPANTES[1].ASSOCIADO;
-                            doublesPlayers[1].querySelector('.player-role').textContent = data.PARTICIPANTES[1].TITULO;
+                            document.getElementById('player-name-2').textContent = data.PARTICIPANTES[1].ASSOCIADO;
+                            document.getElementById('player-role-2').textContent = data.PARTICIPANTES[1].TITULO;
                             
                             // Time B - Jogador 3
-                            doublesPlayers[2].querySelector('.player-name').textContent = data.PARTICIPANTES[2].ASSOCIADO;
-                            doublesPlayers[2].querySelector('.player-role').textContent = data.PARTICIPANTES[2].TITULO;
+                            document.getElementById('player-name-3').textContent = data.PARTICIPANTES[2].ASSOCIADO;
+                            document.getElementById('player-role-3').textContent = data.PARTICIPANTES[2].TITULO;
                             
                             // Time B - Jogador 4
-                            doublesPlayers[3].querySelector('.player-name').textContent = data.PARTICIPANTES[3].ASSOCIADO;
-                            doublesPlayers[3].querySelector('.player-role').textContent = data.PARTICIPANTES[3].TITULO;
+                            document.getElementById('player-name-4').textContent = data.PARTICIPANTES[3].ASSOCIADO;
+                            document.getElementById('player-role-4').textContent = data.PARTICIPANTES[3].TITULO;
                         }
 
                         // Animação suave na troca
